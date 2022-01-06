@@ -1,0 +1,229 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+html {
+  overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+  color: #000;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+}
+
+:focus {
+  outline: 0;
+}
+
+:root {
+  --notch-inset-top: constant(safe-area-inset-top);
+  --notch-inset-top: env(safe-area-inset-top, 0px);
+  --notch-inset-right: constant(safe-area-inset-right);
+  --notch-inset-right: env(safe-area-inset-right, 0px);
+  --notch-inset-bottom: constant(safe-area-inset-bottom);
+  --notch-inset-bottom: env(safe-area-inset-bottom, 0px);
+  --notch-inset-left: constant(safe-area-inset-left);
+  --notch-inset-left: env(safe-area-inset-left, 0px);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+div {
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+body  {
+  font-family: 'Roboto',Arial;
+  width: 100%;
+  background: #fff;
+}
+
+sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+input, textarea, select, button {
+  font-family: 'Roboto' !important;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.clear {
+  clear: both;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Portrait layout (default) */
+.app {
+  height: 100vh;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+#header {
+  padding-top: var(--notch-inset-top);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  top: 0;
+  height: calc(var(--notch-inset-top) + 55px);
+  width: 100%;
+  box-shadow: 0 0 10px #00000026;
+  z-index: 999;
+  display: block;
+}
+
+#header #company-logo {
+  width: 80px;
+  position: absolute;
+  left: 50%;
+  top: auto;
+  margin-left: -40px;
+  display: block;
+}
+
+#header #company-icon {
+  width: 30px;
+  position: absolute;
+  left: auto;
+  top: 50%;
+  padding: 15px 10px;
+  margin-top: -30px;
+  display: none;
+}
+
+#allow-usb {
+  display: none;
+  width: 100%;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  padding: 30px;
+  color: #999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 95;
+  transition: all linear 0.2s;
+}
+
+#allow-usb-error {
+  padding-top: 20px;
+  font-weight: bold;
+}
+
+#terminal-panel {
+  top: calc(var(--notch-inset-top) + 75px);
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+#messages {
+  position: absolute;
+  width: 100%;
+}
+
+#messages p {
+  line-height: 22px;
+  padding: 5px 10px;
+  padding-top: 25px;
+  position: relative;
+  word-break: break-all;
+}
+
+#messages.no-timestamp p {
+  padding-top: 5px;
+}
+
+#messages p:not(:last-of-type) {
+  border-bottom: 1px solid #eee;
+}
+
+#messages p span.timestamp {
+  color: #999;
+  display: block;
+  position: absolute;
+  left: 10px;
+  top: 3px;
+  font-size: 14px;
+}
+
+#messages.no-timestamp p span.timestamp {
+  display: none;
+}
+
+#messages p span.topic {
+  color: #f5892c;
+}
+
+#messages p span.msg {
+  color: #12568a;
+}
+
+#messages p span.data {
+  color: #17d838;
+}
+
+#messages p span.error {
+  color: #cf000f;
+}
+
+/* Landscape layout */
+@media screen and (min-aspect-ratio: 1/1) {
+  #header {
+    padding-left: var(--notch-inset-left);
+    left: 0;
+    width: calc(var(--notch-inset-left) + 55px);
+    height: 100vh;
+  }
+
+  #header #company-logo {
+    display: none;
+  }
+
+  #header #company-icon {
+    display: block;
+  }
+
+  #terminal-panel {
+    top: calc(var(--notch-inset-top) + 15px);
+    left: calc(var(--notch-inset-left) + 75px);
+    right: calc(var(--notch-inset-right) + 15px);
+  }
+}
+
+/* Dark color scheme */
+@media screen and (prefers-color-scheme: dark) {
+    body {
+
+    }
+}
